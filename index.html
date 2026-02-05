@@ -1,0 +1,1216 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ИИ-разгон: пока другие гуглят</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #1a1a1a;
+            background: #FFFFFF;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(180deg, #FFFFFF 0%, #F8F9FA 100%);
+        }
+
+        .hero-content {
+            max-width: 900px;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 8vw, 5.5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            color: #1a1a1a;
+        }
+
+        .hero h1 span {
+            color: #00D9FF;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+            color: #666;
+            margin-bottom: 25px;
+            font-weight: 400;
+            line-height: 1.5;
+        }
+
+        .urgency {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        .urgency-main {
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            background: #FFF9E6;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            color: #1a1a1a;
+            border-left: 4px solid #00D9FF;
+        }
+
+        .countdown {
+            font-size: 0.95rem;
+            color: #666;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        .countdown strong {
+            color: #00D9FF;
+            font-weight: 700;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #00D9FF;
+            color: #FFFFFF;
+            padding: 20px 50px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            border-radius: 12px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 217, 255, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 217, 255, 0.4);
+        }
+
+        /* Section Styling */
+        section {
+            padding: 60px 20px;
+        }
+
+        .section-title {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 40px;
+            color: #1a1a1a;
+        }
+
+        .section-alt {
+            background: #F8F9FA;
+        }
+
+        /* For Whom Section */
+        .checklist {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #FFFFFF;
+            padding: 40px;
+            border-radius: 20px;
+            border-left: 6px solid #00D9FF;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .checklist-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+            color: #1a1a1a;
+        }
+
+        .checklist li {
+            list-style: none;
+            padding: 15px 0;
+            font-size: 1.2rem;
+            color: #333;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .checklist li:last-child {
+            border-bottom: none;
+        }
+
+        .checklist li::before {
+            content: "✅";
+            margin-right: 15px;
+            font-size: 1.4rem;
+        }
+
+        .anti-target {
+            max-width: 800px;
+            margin: 40px auto 0;
+            padding: 20px;
+            text-align: center;
+            color: #999;
+            font-size: 0.95rem;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        /* Problem Cards */
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .problem-card {
+            background: #FFFFFF;
+            padding: 30px 25px;
+            border-radius: 16px;
+            border-left: 4px solid #00D9FF;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .problem-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0, 217, 255, 0.15);
+        }
+
+        .problem-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #1a1a1a;
+        }
+
+        .problem-card p {
+            color: #666;
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        /* Transformation */
+        .transformation {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 40px;
+            background: linear-gradient(135deg, #F8F9FA 0%, #FFFFFF 100%);
+            border-radius: 20px;
+            border: 2px solid #00D9FF;
+            position: relative;
+        }
+
+        .point {
+            background: #FFFFFF;
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .point h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #00D9FF;
+        }
+
+        .point p {
+            font-size: 1.1rem;
+            color: #333;
+            font-style: italic;
+        }
+
+        .arrow {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 800;
+            color: #00D9FF;
+            margin: 20px 0;
+        }
+
+        /* Results Grid */
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .result-item {
+            text-align: center;
+            padding: 30px;
+        }
+
+        .result-item h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #1a1a1a;
+        }
+
+        .result-item p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        /* Principles */
+        .principles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .principle-card {
+            background: #FFFFFF;
+            padding: 50px 35px;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            border-top: 5px solid #00D9FF;
+        }
+
+        .principle-number {
+            font-size: 4rem;
+            font-weight: 800;
+            color: #00D9FF;
+            opacity: 0.2;
+            line-height: 1;
+            margin-bottom: 15px;
+        }
+
+        .principle-card h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #1a1a1a;
+        }
+
+        .principle-card ul {
+            list-style: none;
+            text-align: left;
+            margin-top: 20px;
+        }
+
+        .principle-card li {
+            padding: 10px 0;
+            color: #666;
+            font-size: 1rem;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .principle-card li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #00D9FF;
+            font-weight: 700;
+        }
+
+        /* Skills Tabs */
+        .skills-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .skill-tab {
+            padding: 15px 30px;
+            background: #F8F9FA;
+            border: 2px solid transparent;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            color: #666;
+            transition: all 0.3s ease;
+        }
+
+        .skill-tab:hover {
+            background: #FFFFFF;
+            border-color: #00D9FF;
+        }
+
+        .skill-tab.active {
+            background: #00D9FF;
+            color: #FFFFFF;
+            border-color: #00D9FF;
+        }
+
+        .skills-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .skill-panel {
+            display: none;
+            background: #FFFFFF;
+            padding: 40px;
+            border-radius: 20px;
+            border-left: 6px solid #00D9FF;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            animation: fadeIn 0.5s ease;
+        }
+
+        .skill-panel.active {
+            display: block;
+        }
+
+        .skill-panel h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #1a1a1a;
+        }
+
+        .skill-panel ul {
+            list-style: none;
+        }
+
+        .skill-panel li {
+            padding: 12px 0;
+            color: #666;
+            font-size: 1.1rem;
+            padding-left: 30px;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .skill-panel li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #00D9FF;
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+
+        /* Format */
+        .format-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .format-item {
+            background: #FFFFFF;
+            padding: 30px 25px;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .format-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .format-item h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #1a1a1a;
+        }
+
+        .format-item p {
+            color: #666;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        /* Pricing */
+        .pricing-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .pricing-card {
+            background: #FFFFFF;
+            padding: 50px 40px;
+            border-radius: 20px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            position: relative;
+            border: 2px solid #f0f0f0;
+            transition: all 0.3s ease;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            border-color: #00D9FF;
+            box-shadow: 0 10px 40px rgba(0, 217, 255, 0.2);
+        }
+
+        .pricing-card.featured {
+            border: 3px solid #00D9FF;
+            transform: scale(1.05);
+        }
+
+        .pricing-badge {
+            position: absolute;
+            top: -15px;
+            right: 30px;
+            background: #00D9FF;
+            color: #FFFFFF;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 700;
+        }
+
+        .pricing-card h3 {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            color: #1a1a1a;
+        }
+
+        .old-price {
+            text-decoration: line-through;
+            color: #999;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .price {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: #00D9FF;
+            margin-bottom: 10px;
+        }
+
+        .price-note {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 30px;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 40px;
+            text-align: left;
+        }
+
+        .pricing-features li {
+            padding: 12px 0;
+            color: #333;
+            font-size: 1rem;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .pricing-features li::before {
+            content: "✅";
+            margin-right: 10px;
+        }
+
+        .pricing-features li.disabled {
+            color: #ccc;
+        }
+
+        .pricing-features li.disabled::before {
+            content: "❌";
+        }
+
+        .discount-banner {
+            background: linear-gradient(135deg, #FFF9E6 0%, #FFE6E6 100%);
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 30px;
+        }
+
+        .question-link {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .question-link a {
+            color: #00D9FF;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.3s;
+        }
+
+        .question-link a:hover {
+            border-bottom-color: #00D9FF;
+        }
+
+        /* Author */
+        .author-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #FFFFFF;
+            padding: 60px;
+            border-radius: 20px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+
+        .author-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #00D9FF 0%, #0099CC 100%);
+            margin: 0 auto 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: #FFFFFF;
+        }
+
+        .author-container h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #1a1a1a;
+        }
+
+        .author-role {
+            color: #00D9FF;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 30px;
+        }
+
+        .author-container p {
+            color: #666;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        /* FAQ */
+        .faq-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: #FFFFFF;
+            margin-bottom: 20px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .faq-question {
+            padding: 25px 30px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s;
+        }
+
+        .faq-question:hover {
+            background: #F8F9FA;
+        }
+
+        .faq-question::after {
+            content: "+";
+            font-size: 2rem;
+            font-weight: 700;
+            color: #00D9FF;
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .faq-answer-content {
+            padding: 0 30px 25px;
+            color: #666;
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+        }
+
+        .faq-item.active .faq-question::after {
+            content: "−";
+        }
+
+        /* Social Proof */
+        .social-proof {
+            max-width: 800px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, #F8F9FA 0%, #FFFFFF 100%);
+            padding: 50px;
+            border-radius: 20px;
+            text-align: center;
+            border: 2px solid #00D9FF;
+        }
+
+        .social-proof h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #1a1a1a;
+        }
+
+        .social-proof p {
+            font-size: 1.1rem;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        /* Footer */
+        footer {
+            background: #1a1a1a;
+            color: #FFFFFF;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: #00D9FF;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: opacity 0.3s;
+        }
+
+        .footer-links a:hover {
+            opacity: 0.7;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            section {
+                padding: 40px 20px;
+            }
+
+            .checklist,
+            .transformation,
+            .author-container {
+                padding: 25px 20px;
+            }
+
+            .pricing-card.featured {
+                transform: scale(1);
+            }
+
+            .problem-grid,
+            .format-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .skills-tabs {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .skill-tab {
+                width: 100%;
+                text-align: center;
+            }
+
+            .skill-panel {
+                padding: 25px 20px;
+            }
+        }
+
+        @media (max-width: 1024px) and (min-width: 769px) {
+            .problem-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .format-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="hero-content fade-in">
+            <h1>ИИ-разгон: <br><span>пока другие гуглят</span></h1>
+            <p class="hero-subtitle">Перестаньте бояться, что ИИ обесценит вашу экспертизу. Научитесь использовать его так, чтобы работать в 2 раза быстрее, но оставаться незаменимым</p>
+            <div class="urgency">
+                <div class="urgency-main">
+                    ⏰ Старт 7 марта 2026 – успей на раннее бронирование
+                </div>
+                <div class="countdown">
+                    Осталось <strong id="days-left">23</strong> дня до окончания раннего бронирования
+                </div>
+            </div>
+            <a href="https://t.me/krasseg?text=Привет!%20Хочу%20оставить%20заявку%20на%20курс%20ИИ-разгон,%20давай%20обсудим!" target="_blank" class="cta-button" style="color: #FFFFFF !important;">Оставить заявку на участие</a>
+        </div>
+    </section>
+
+    <!-- FOR WHOM -->
+    <section id="for-whom">
+        <div class="container">
+            <h2 class="section-title">Для кого этот курс</h2>
+            <div class="checklist fade-in">
+                <p class="checklist-title">Этот курс для вас, если вы:</p>
+                <ul>
+                    <li>Эксперт-предприниматель (коуч, диетолог, консультант, бизнес-тренер)</li>
+                    <li>Продвигаетесь через контент в Telegram/Instagram/YouTube</li>
+                    <li>Используете ChatGPT/Claude/Gemini, но результат получается "как у всех"</li>
+                    <li>Чувствуете FOMO: вокруг все активно используют ИИ, а вы не понимаете КАК именно</li>
+                    <li>Хотите встроить ИИ осознанно, без потери авторского голоса</li>
+                </ul>
+                <div class="anti-target">
+                    Это НЕ для вас, если вы ищете теорию про нейросети или хотите заменить свою работу на 100% автоматизацией
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROBLEM -->
+    <section id="problem" class="section-alt">
+        <div class="container">
+            <h2 class="section-title">Знакомая ситуация?</h2>
+            <div class="problem-grid">
+                <div class="problem-card fade-in">
+                    <h3>"ИИ пишет шаблонно"</h3>
+                    <p>Просишь написать пост → получаешь текст "как у всех"</p>
+                    <p>Клиенты чувствуют фальшь</p>
+                    <p>Теряешь доверие вместо усиления</p>
+                </div>
+                <div class="problem-card fade-in">
+                    <h3>"А чем вы лучше ИИ?"</h3>
+                    <p>Вокруг все говорят про ChatGPT/Claude/Gemini</p>
+                    <p>Ощущение, что экспертиза обесценивается</p>
+                    <p>Непонятно, как конкурировать</p>
+                </div>
+                <div class="problem-card fade-in">
+                    <h3>"Новый инструмент каждый день"</h3>
+                    <p>GPT, Claude, Midjourney, NotebookLM, n8n...</p>
+                    <p>Постоянное FOMO</p>
+                    <p>Нет системы, нет уверенности</p>
+                </div>
+                <div class="problem-card fade-in">
+                    <h3>"Рутина крадет время"</h3>
+                    <p>Черновики, форматирование, визуал, публикации</p>
+                    <p>Процесс хаотичный</p>
+                    <p>Вдохновение непредсказуемо</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SOLUTION -->
+    <section id="solution">
+        <div class="container">
+            <h2 class="section-title">Что если ИИ станет вашим усилителем, а не угрозой?</h2>
+            <div class="transformation fade-in">
+                <div class="point">
+                    <h3>ТОЧКА А</h3>
+                    <p>"ИИ вроде нужен, но я не понимаю, как использовать его так, чтобы не потерять ценность и контроль"</p>
+                </div>
+                <div class="arrow">↓ 6 НЕДЕЛЬ ↓</div>
+                <div class="point">
+                    <h3>ТОЧКА Б</h3>
+                    <p>"ИИ – мой рабочий инструмент. Он экономит время, усиливает мою экспертизу и делает мой сервис/оффер/работу сильнее, а не дешевле"</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section id="how-it-works" class="section-alt">
+        <div class="container">
+            <h2 class="section-title">Практика, а не теория</h2>
+            <div class="principles-grid">
+                <div class="principle-card fade-in">
+                    <div class="principle-number">01</div>
+                    <h3>90% практики</h3>
+                    <ul>
+                        <li>Не лекции про "как устроены нейросети"</li>
+                        <li>Screen-share: показываем куда нажимать, что вводить, как писать</li>
+                        <li>Включаете камеру → делаете вместе</li>
+                    </ul>
+                </div>
+                <div class="principle-card fade-in">
+                    <div class="principle-number">02</div>
+                    <h3>Минимальный стек</h3>
+                    <ul>
+                        <li>Не 20 инструментов, а 3-5 под ваши задачи</li>
+                        <li>Глубина, а не поверхность</li>
+                        <li>Никакого анализ-паралича</li>
+                    </ul>
+                </div>
+                <div class="principle-card fade-in">
+                    <div class="principle-number">03</div>
+                    <h3>Быстрые результаты</h3>
+                    <ul>
+                        <li>Уже после 2-й недели экономите 2-3 часа</li>
+                        <li>К концу курса: 30-40 часов в месяц</li>
+                        <li>Измеримые, конкретные изменения</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills">
+        <div class="container">
+            <h2 class="section-title">Программа: 6 недель</h2>
+            <div class="skills-tabs">
+                <div class="skill-tab active" data-week="1">Неделя 1</div>
+                <div class="skill-tab" data-week="2">Неделя 2</div>
+                <div class="skill-tab" data-week="3">Неделя 3</div>
+                <div class="skill-tab" data-week="4">Неделя 4</div>
+                <div class="skill-tab" data-week="5">Неделя 5</div>
+                <div class="skill-tab" data-week="6">Неделя 6</div>
+            </div>
+            <div class="skills-content">
+                <div class="skill-panel active" data-week="1">
+                    <h3>Неделя 1: Авторский голос в ИИ</h3>
+                    <ul>
+                        <li>Создаём "файл голоса" с вашим стилем</li>
+                        <li>ИИ помогает из сырой идеи дойти до поста, который звучит как вы</li>
+                        <li>Избавляемся от шаблонного контента</li>
+                    </ul>
+                </div>
+                <div class="skill-panel" data-week="2">
+                    <h3>Неделя 2: Системный контент-процесс</h3>
+                    <ul>
+                        <li>От идеи до публикации за 30-40 минут</li>
+                        <li>Контент-матрица на месяц вперёд</li>
+                        <li>Больше никакого хаоса и "то вдохновение есть, то нет"</li>
+                    </ul>
+                </div>
+                <div class="skill-panel" data-week="3">
+                    <h3>Неделя 3: Визуальная упаковка без дизайнера</h3>
+                    <ul>
+                        <li>Midjourney/DALL-E для обложек и постов</li>
+                        <li>Создание фирменного визуального стиля</li>
+                        <li>10-15 уникальных изображений за занятие</li>
+                    </ul>
+                </div>
+                <div class="skill-panel" data-week="4">
+                    <h3>Неделя 4: Работа с экспертным контекстом</h3>
+                    <ul>
+                        <li>NotebookLM для работы с документами и источниками</li>
+                        <li>База знаний из ваших материалов</li>
+                        <li>Экспертный контент с обоснованием за минуты</li>
+                    </ul>
+                </div>
+                <div class="skill-panel" data-week="5">
+                    <h3>Неделя 5: Умная автоматизация</h3>
+                    <ul>
+                        <li>Zapier/Make/n8n для рутинных процессов</li>
+                        <li>Минимум 1 работающая автоматизация</li>
+                        <li>Экономия 1-2 часа в неделю на автопилоте</li>
+                    </ul>
+                </div>
+                <div class="skill-panel" data-week="6">
+                    <h3>Неделя 6: Личная AI-экосистема</h3>
+                    <ul>
+                        <li>Минималистичный AI-стек (3-5 инструментов max)</li>
+                        <li>Стратегия развития на 6 месяцев</li>
+                        <li>Итого: 30-40 часов экономии в месяц</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FORMAT -->
+    <section id="format" class="section-alt">
+        <div class="container">
+            <h2 class="section-title">Как проходит обучение</h2>
+            <div class="format-grid">
+                <div class="format-item fade-in">
+                    <div class="format-icon">📅</div>
+                    <h3>Длительность</h3>
+                    <p>6 недель | 1-2 воркшопа в неделю по 1-1.5 часа</p>
+                </div>
+                <div class="format-item fade-in">
+                    <div class="format-icon">💬</div>
+                    <h3>Чат сообщества</h3>
+                    <p>Telegram-чат для вопросов, обмена опытом, разбора кейсов</p>
+                </div>
+                <div class="format-item fade-in">
+                    <div class="format-icon">🖥️</div>
+                    <h3>Воркшопы</h3>
+                    <p>Включаем screen-share → показываем по шагам → вы делаете вместе с нами</p>
+                </div>
+                <div class="format-item fade-in">
+                    <div class="format-icon">📋</div>
+                    <h3>Домашки</h3>
+                    <p>Конкретные задачи между встречами → проверка и обсуждение</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRICING -->
+    <section id="pricing">
+        <div class="container">
+            <h2 class="section-title">Выберите свой пакет</h2>
+            <div class="pricing-container">
+                <div class="discount-banner fade-in">
+                    ⏰ Раннее бронирование до 28 февраля: скидка 4-7 тысяч рублей
+                </div>
+                <div class="pricing-grid">
+                    <div class="pricing-card fade-in">
+                        <h3>LIGHT</h3>
+                        <div class="old-price">23 000 ₽</div>
+                        <div class="price">19 000 ₽ / $200</div>
+                        <div class="price-note">до 28 февраля</div>
+                        <ul class="pricing-features">
+                            <li>Лекции и воркшопы</li>
+                            <li>Telegram-чат</li>
+                            <li>Обсуждение домашек</li>
+                            <li class="disabled">3 персональных разбора</li>
+                            <li class="disabled">Записи всех встреч</li>
+                        </ul>
+                        <a href="https://t.me/krasseg?text=Привет!%20Хочу%20оставить%20заявку%20на%20курс%20ИИ-разгон%20(тариф%20Light),%20давай%20обсудим!" target="_blank" class="cta-button" style="color: #FFFFFF !important;">Выбрать Light</a>
+                    </div>
+                    <div class="pricing-card featured fade-in">
+                        <div class="pricing-badge">⭐ ПОПУЛЯРНЫЙ</div>
+                        <h3>FULL</h3>
+                        <div class="old-price">34 000 ₽</div>
+                        <div class="price">27 000 ₽ / $280</div>
+                        <div class="price-note">до 28 февраля</div>
+                        <ul class="pricing-features">
+                            <li>Лекции и воркшопы</li>
+                            <li>Telegram-чат</li>
+                            <li>Обсуждение домашек</li>
+                            <li>3 персональных разбора</li>
+                            <li>Записи всех встреч</li>
+                        </ul>
+                        <a href="https://t.me/krasseg?text=Привет!%20Хочу%20оставить%20заявку%20на%20курс%20ИИ-разгон%20(тариф%20Full),%20давай%20обсудим!" target="_blank" class="cta-button" style="color: #FFFFFF !important;">Выбрать Full</a>
+                    </div>
+                </div>
+                <div class="question-link" style="margin-top: 40px;">
+                    <a href="https://t.me/krasseg?text=Привет!%20У%20меня%20есть%20вопрос%20про%20курс%20ИИ-разгон" target="_blank" class="cta-button" style="display: inline-block; font-size: 1.1rem; color: #FFFFFF !important;">Есть вопросы? Напишите в Telegram</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq">
+        <div class="container">
+            <h2 class="section-title">Частые вопросы</h2>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">У меня нет технического бэкграунда. Я справлюсь?</div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Да! Курс для НЕтехнарей. Показываем всё по шагам, без сложных терминов.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Мне нужна подписка на ChatGPT/Claude/Gemini?</div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Желательно, но не обязательно для старта. Обсудим оптимальный вариант на первой встрече.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Я уже использую ChatGPT/Claude/Gemini. Мне всё равно нужен курс?</div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Если результат вас устраивает на 100% – возможно, нет. Если чувствуете, что используете 10% возможностей – точно да.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Сколько времени в неделю нужно?</div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            1-1.5 часа на воркшоп + 1-2 часа на домашку. Итого: 2-3 часа в неделю. Окупается экономией уже с 2-й недели.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">А если я пропущу встречу?</div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            В пакете Full будут записи всех встреч. В Light – можете спросить коллег в чате.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Это будет актуально через месяц? ИИ же быстро меняется</div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Учим не конкретным кнопкам, а принципам работы с ИИ. Инструменты меняются, но подход остаётся.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA SECTION -->
+    <section id="cta" class="section-alt">
+        <div class="container">
+            <div class="author-container fade-in" style="text-align: center;">
+                <h2 style="font-size: 2.5rem; font-weight: 800; margin-bottom: 20px; color: #1a1a1a;">Готов стартовать?</h2>
+                <p style="font-size: 1.3rem; color: #666; margin-bottom: 30px;">Напиши в Telegram и обсудим детали!</p>
+                <a href="https://t.me/krasseg?text=Привет!%20Хочу%20оставить%20заявку%20на%20курс%20ИИ-разгон,%20давай%20обсудим!" target="_blank" class="cta-button" style="font-size: 1.3rem; padding: 25px 60px; color: #FFFFFF !important;">Написать в Telegram</a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Countdown to Feb 28, 2026
+        function updateCountdown() {
+            const endDate = new Date('2026-02-28T23:59:59');
+            const now = new Date();
+            const diffTime = endDate - now;
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+            const daysElement = document.getElementById('days-left');
+            if (daysElement && diffDays > 0) {
+                daysElement.textContent = diffDays;
+            }
+        }
+
+        updateCountdown();
+
+        // Skills Tabs
+        document.querySelectorAll('.skill-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                const week = tab.getAttribute('data-week');
+
+                // Remove active class from all tabs and panels
+                document.querySelectorAll('.skill-tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.skill-panel').forEach(p => p.classList.remove('active'));
+
+                // Add active class to clicked tab and corresponding panel
+                tab.classList.add('active');
+                document.querySelector(`.skill-panel[data-week="${week}"]`).classList.add('active');
+            });
+        });
+
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentElement;
+                const wasActive = item.classList.contains('active');
+
+                // Close all items
+                document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+
+                // Open clicked item if it wasn't active
+                if (!wasActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Fade in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            observer.observe(el);
+        });
+    </script>
+
+</body>
+</html>
