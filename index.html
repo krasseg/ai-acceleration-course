@@ -4,8 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>ИИ-разгон: пока другие гуглят</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --cream: #FDF8F3;
+            --warm-white: #FFFBF7;
+            --sand: #E8DDD4;
+            --terracotta: #C4755B;
+            --terracotta-dark: #A65D45;
+            --warm-brown: #8B7355;
+            --charcoal: #2D2A26;
+            --warm-gray: #6B635B;
+            --light-gray: #9B938A;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -13,16 +25,31 @@
         }
 
         body {
-            font-family: 'Inter', sans-serif;
-            color: #1a1a1a;
-            background: #FFFFFF;
-            line-height: 1.6;
+            font-family: 'DM Sans', sans-serif;
+            color: var(--charcoal);
+            background: var(--cream);
+            line-height: 1.7;
+            position: relative;
+        }
+
+        /* Subtle grain texture overlay */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.03;
+            pointer-events: none;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            z-index: 1000;
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1100px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 24px;
         }
 
         /* Hero Section */
@@ -32,125 +59,250 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 40px 20px;
-            background: linear-gradient(180deg, #FFFFFF 0%, #F8F9FA 100%);
+            padding: 60px 24px;
+            background: linear-gradient(180deg, var(--warm-white) 0%, var(--cream) 100%);
+            position: relative;
         }
 
         .hero-content {
-            max-width: 900px;
+            max-width: 800px;
+        }
+
+        .hero-eyebrow {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--terracotta);
+            margin-bottom: 24px;
+            font-weight: 600;
         }
 
         .hero h1 {
-            font-size: clamp(3rem, 8vw, 5.5rem);
-            font-weight: 800;
-            line-height: 1.1;
-            margin-bottom: 20px;
-            color: #1a1a1a;
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(2.8rem, 7vw, 4.5rem);
+            font-weight: 400;
+            line-height: 1.15;
+            margin-bottom: 28px;
+            color: var(--charcoal);
         }
 
         .hero h1 span {
-            color: #00D9FF;
+            color: var(--terracotta);
+            font-style: italic;
         }
 
         .hero-subtitle {
-            font-size: clamp(1.1rem, 2.5vw, 1.5rem);
-            color: #666;
-            margin-bottom: 25px;
+            font-size: 1.15rem;
+            color: var(--warm-gray);
+            margin-bottom: 40px;
             font-weight: 400;
-            line-height: 1.5;
+            line-height: 1.8;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .urgency {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 10px;
-            margin-bottom: 30px;
+            gap: 12px;
+            margin-bottom: 40px;
         }
 
         .urgency-main {
             display: inline-flex;
             align-items: center;
-            gap: 15px;
-            background: #FFF9E6;
-            padding: 15px 30px;
-            border-radius: 50px;
-            font-weight: 600;
-            color: #1a1a1a;
-            border-left: 4px solid #00D9FF;
+            gap: 12px;
+            background: var(--warm-white);
+            padding: 14px 28px;
+            border-radius: 100px;
+            font-weight: 500;
+            color: var(--charcoal);
+            border: 1px solid var(--sand);
+            font-size: 0.95rem;
+        }
+
+        .urgency-main .dot {
+            width: 8px;
+            height: 8px;
+            background: var(--terracotta);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
         }
 
         .countdown {
-            font-size: 0.95rem;
-            color: #666;
-            font-weight: 500;
-            text-align: center;
+            font-size: 0.9rem;
+            color: var(--light-gray);
+            font-weight: 400;
         }
 
         .countdown strong {
-            color: #00D9FF;
-            font-weight: 700;
+            color: var(--terracotta);
+            font-weight: 600;
         }
 
         .cta-button {
             display: inline-block;
-            background: #00D9FF;
-            color: #FFFFFF;
-            padding: 20px 50px;
-            font-size: 1.2rem;
-            font-weight: 700;
-            border-radius: 12px;
+            background: var(--terracotta);
+            color: var(--warm-white);
+            padding: 18px 44px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 100px;
             text-decoration: none;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(0, 217, 255, 0.3);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 24px rgba(196, 117, 91, 0.25);
+            letter-spacing: 0.02em;
         }
 
         .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(0, 217, 255, 0.4);
+            background: var(--terracotta-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 32px rgba(196, 117, 91, 0.35);
         }
 
         /* Section Styling */
         section {
-            padding: 60px 20px;
+            padding: 70px 24px;
+        }
+
+        .section-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--terracotta);
+            margin-bottom: 16px;
+            font-weight: 600;
         }
 
         .section-title {
-            font-size: clamp(2.5rem, 5vw, 3.5rem);
-            font-weight: 800;
-            text-align: center;
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            font-weight: 400;
             margin-bottom: 40px;
-            color: #1a1a1a;
+            color: var(--charcoal);
+            line-height: 1.3;
+        }
+
+        .section-title.center {
+            text-align: center;
         }
 
         .section-alt {
-            background: #F8F9FA;
+            background: var(--warm-white);
+        }
+
+        /* Problem Section - Staggered cards */
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .problem-card {
+            background: var(--cream);
+            padding: 36px 32px;
+            border-radius: 24px;
+            border: 1px solid var(--sand);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .problem-card:nth-child(2) {
+            transform: translateY(40px);
+        }
+
+        .problem-card:nth-child(4) {
+            transform: translateY(40px);
+        }
+
+        .problem-card:hover {
+            border-color: var(--terracotta);
+            box-shadow: 0 20px 60px rgba(45, 42, 38, 0.08);
+        }
+
+        .problem-card h3 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.35rem;
+            font-weight: 400;
+            margin-bottom: 16px;
+            color: var(--charcoal);
+        }
+
+        .problem-card ul {
+            list-style: none;
+        }
+
+        .problem-card li {
+            color: var(--warm-gray);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            padding: 6px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .problem-card li::before {
+            content: "·";
+            position: absolute;
+            left: 0;
+            color: var(--terracotta);
+            font-size: 1.5rem;
+            line-height: 1;
+            top: 4px;
         }
 
         /* For Whom Section */
-        .checklist {
-            max-width: 800px;
+        .for-whom-content {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 80px;
+            align-items: start;
+            max-width: 1000px;
             margin: 0 auto;
-            background: #FFFFFF;
-            padding: 40px;
-            border-radius: 20px;
-            border-left: 6px solid #00D9FF;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
         }
 
-        .checklist-title {
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 30px;
-            color: #1a1a1a;
+        .for-whom-intro h2 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 2.2rem;
+            font-weight: 400;
+            margin-bottom: 20px;
+            color: var(--charcoal);
+        }
+
+        .for-whom-intro p {
+            color: var(--warm-gray);
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+
+        .checklist {
+            background: var(--warm-white);
+            padding: 40px;
+            border-radius: 24px;
+            border: 1px solid var(--sand);
+        }
+
+        .checklist ul {
+            list-style: none;
         }
 
         .checklist li {
-            list-style: none;
-            padding: 15px 0;
-            font-size: 1.2rem;
-            color: #333;
-            border-bottom: 1px solid #f0f0f0;
+            padding: 16px 0;
+            font-size: 1rem;
+            color: var(--charcoal);
+            border-bottom: 1px solid var(--sand);
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
         }
 
         .checklist li:last-child {
@@ -158,223 +310,240 @@
         }
 
         .checklist li::before {
-            content: "✅";
-            margin-right: 15px;
-            font-size: 1.4rem;
+            content: "";
+            width: 20px;
+            height: 20px;
+            min-width: 20px;
+            border: 2px solid var(--terracotta);
+            border-radius: 50%;
+            margin-top: 2px;
+            position: relative;
+        }
+
+        .checklist li::after {
+            content: "";
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: var(--terracotta);
+            border-radius: 50%;
+            margin-left: 6px;
+            margin-top: 8px;
         }
 
         .anti-target {
-            max-width: 800px;
-            margin: 40px auto 0;
-            padding: 20px;
-            text-align: center;
-            color: #999;
-            font-size: 0.95rem;
-            border-top: 1px solid #e0e0e0;
+            margin-top: 32px;
+            padding-top: 24px;
+            border-top: 1px dashed var(--sand);
+            color: var(--light-gray);
+            font-size: 0.9rem;
+            font-style: italic;
         }
 
-        /* Problem Cards */
-        .problem-grid {
+        /* Format Section */
+        .format-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 25px;
-            max-width: 1200px;
+            gap: 20px;
+            max-width: 1000px;
             margin: 0 auto;
         }
 
-        .problem-card {
-            background: #FFFFFF;
-            padding: 30px 25px;
+        .format-item {
+            background: var(--cream);
+            padding: 32px 24px;
+            border-radius: 20px;
+            text-align: center;
+            border: 1px solid transparent;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .format-item:hover {
+            border-color: var(--sand);
+            transform: translateY(-4px);
+        }
+
+        .format-icon {
+            width: 56px;
+            height: 56px;
+            background: var(--warm-white);
+            border: 1px solid var(--sand);
             border-radius: 16px;
-            border-left: 4px solid #00D9FF;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 1.8rem;
         }
 
-        .problem-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 30px rgba(0, 217, 255, 0.15);
+        .format-item h3 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.15rem;
+            font-weight: 400;
+            margin-bottom: 12px;
+            color: var(--charcoal);
         }
 
-        .problem-card h3 {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 20px;
-            color: #1a1a1a;
-        }
-
-        .problem-card p {
-            color: #666;
-            font-size: 1rem;
+        .format-item p {
+            color: var(--warm-gray);
+            font-size: 0.9rem;
             line-height: 1.6;
-            margin-bottom: 10px;
         }
 
         /* Transformation */
         .transformation {
-            max-width: 900px;
-            margin: 40px auto;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .transformation-point {
+            background: var(--warm-white);
             padding: 40px;
-            background: linear-gradient(135deg, #F8F9FA 0%, #FFFFFF 100%);
-            border-radius: 20px;
-            border: 2px solid #00D9FF;
+            border-radius: 24px;
+            border: 1px solid var(--sand);
             position: relative;
         }
 
-        .point {
-            background: #FFFFFF;
-            padding: 30px;
-            border-radius: 12px;
-            margin-bottom: 30px;
-            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+        .transformation-point.after {
+            background: var(--cream);
+            border-color: var(--terracotta);
         }
 
-        .point h3 {
-            font-size: 1.3rem;
-            font-weight: 700;
-            margin-bottom: 15px;
-            color: #00D9FF;
+        .transformation-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--terracotta);
+            margin-bottom: 16px;
+            font-weight: 600;
         }
 
-        .point p {
+        .transformation-point p {
             font-size: 1.1rem;
-            color: #333;
+            color: var(--charcoal);
+            line-height: 1.8;
             font-style: italic;
         }
 
-        .arrow {
+        .transformation-arrow {
             text-align: center;
-            font-size: 3rem;
-            font-weight: 800;
-            color: #00D9FF;
-            margin: 20px 0;
+            padding: 32px 0;
+            color: var(--sand);
+            font-size: 2rem;
         }
 
-        /* Results Grid */
-        .results-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-            margin-top: 50px;
+        .transformation-arrow span {
+            display: inline-block;
+            padding: 8px 24px;
+            background: var(--warm-white);
+            border-radius: 100px;
+            font-size: 0.85rem;
+            color: var(--warm-gray);
+            font-weight: 500;
+            letter-spacing: 0.1em;
         }
 
-        .result-item {
-            text-align: center;
-            padding: 30px;
-        }
-
-        .result-item h3 {
-            font-size: 1.6rem;
-            font-weight: 700;
-            margin-bottom: 15px;
-            color: #1a1a1a;
-        }
-
-        .result-item p {
-            color: #666;
-            font-size: 1.1rem;
-        }
-
-        /* Principles */
+        /* Promises / How it works */
         .principles-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 40px;
-            max-width: 1100px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            max-width: 1000px;
             margin: 0 auto;
         }
 
         .principle-card {
-            background: #FFFFFF;
-            padding: 50px 35px;
-            border-radius: 16px;
-            text-align: center;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-            border-top: 5px solid #00D9FF;
+            background: var(--cream);
+            padding: 32px 28px;
+            border-radius: 24px;
+            border: 1px solid var(--sand);
+            transition: all 0.4s ease;
+        }
+
+        .principle-card:hover {
+            border-color: var(--terracotta);
         }
 
         .principle-number {
-            font-size: 4rem;
-            font-weight: 800;
-            color: #00D9FF;
-            opacity: 0.2;
+            font-family: 'DM Serif Display', serif;
+            font-size: 3rem;
+            color: var(--sand);
             line-height: 1;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
 
         .principle-card h3 {
-            font-size: 1.8rem;
-            font-weight: 700;
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.3rem;
+            font-weight: 400;
             margin-bottom: 20px;
-            color: #1a1a1a;
+            color: var(--charcoal);
+            line-height: 1.4;
         }
 
         .principle-card ul {
             list-style: none;
-            text-align: left;
-            margin-top: 20px;
         }
 
         .principle-card li {
-            padding: 10px 0;
-            color: #666;
-            font-size: 1rem;
-            padding-left: 25px;
+            padding: 8px 0;
+            color: var(--warm-gray);
+            font-size: 0.95rem;
+            padding-left: 20px;
             position: relative;
         }
 
         .principle-card li::before {
-            content: "→";
+            content: "—";
             position: absolute;
             left: 0;
-            color: #00D9FF;
-            font-weight: 700;
+            color: var(--terracotta);
         }
 
         /* Skills Tabs */
+        .skills-section {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
         .skills-tabs {
             display: flex;
             justify-content: center;
-            gap: 10px;
+            gap: 8px;
             margin-bottom: 40px;
             flex-wrap: wrap;
         }
 
         .skill-tab {
-            padding: 15px 30px;
-            background: #F8F9FA;
-            border: 2px solid transparent;
-            border-radius: 12px;
+            padding: 12px 24px;
+            background: transparent;
+            border: 1px solid var(--sand);
+            border-radius: 100px;
             cursor: pointer;
-            font-weight: 600;
-            color: #666;
+            font-weight: 500;
+            color: var(--warm-gray);
             transition: all 0.3s ease;
+            font-size: 0.9rem;
         }
 
         .skill-tab:hover {
-            background: #FFFFFF;
-            border-color: #00D9FF;
+            border-color: var(--terracotta);
+            color: var(--terracotta);
         }
 
         .skill-tab.active {
-            background: #00D9FF;
-            color: #FFFFFF;
-            border-color: #00D9FF;
-        }
-
-        .skills-content {
-            max-width: 900px;
-            margin: 0 auto;
+            background: var(--terracotta);
+            color: var(--warm-white);
+            border-color: var(--terracotta);
         }
 
         .skill-panel {
             display: none;
-            background: #FFFFFF;
-            padding: 40px;
-            border-radius: 20px;
-            border-left: 6px solid #00D9FF;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-            animation: fadeIn 0.5s ease;
+            background: var(--warm-white);
+            padding: 48px;
+            border-radius: 24px;
+            border: 1px solid var(--sand);
+            animation: fadeIn 0.4s ease;
         }
 
         .skill-panel.active {
@@ -382,10 +551,11 @@
         }
 
         .skill-panel h3 {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 20px;
-            color: #1a1a1a;
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.6rem;
+            font-weight: 400;
+            margin-bottom: 24px;
+            color: var(--charcoal);
         }
 
         .skill-panel ul {
@@ -393,278 +563,226 @@
         }
 
         .skill-panel li {
-            padding: 12px 0;
-            color: #666;
-            font-size: 1.1rem;
-            padding-left: 30px;
+            padding: 14px 0;
+            color: var(--charcoal);
+            font-size: 1.05rem;
+            padding-left: 32px;
             position: relative;
             line-height: 1.6;
+            border-bottom: 1px solid var(--sand);
+        }
+
+        .skill-panel li:last-child {
+            border-bottom: none;
         }
 
         .skill-panel li::before {
-            content: "✓";
+            content: "";
             position: absolute;
             left: 0;
-            color: #00D9FF;
-            font-weight: 700;
-            font-size: 1.5rem;
-        }
-
-        /* Format */
-        .format-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 25px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .format-item {
-            background: #FFFFFF;
-            padding: 30px 25px;
-            border-radius: 16px;
-            text-align: center;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-        }
-
-        .format-icon {
-            font-size: 3rem;
-            margin-bottom: 20px;
-        }
-
-        .format-item h3 {
-            font-size: 1.4rem;
-            font-weight: 700;
-            margin-bottom: 15px;
-            color: #1a1a1a;
-        }
-
-        .format-item p {
-            color: #666;
-            font-size: 1rem;
-            line-height: 1.6;
+            top: 20px;
+            width: 16px;
+            height: 2px;
+            background: var(--terracotta);
         }
 
         /* Pricing */
         .pricing-container {
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
-        }
-
-        .pricing-card {
-            background: #FFFFFF;
-            padding: 50px 40px;
-            border-radius: 20px;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
-            text-align: center;
-            position: relative;
-            border: 2px solid #f0f0f0;
-            transition: all 0.3s ease;
-        }
-
-        .pricing-card:hover {
-            transform: translateY(-10px);
-            border-color: #00D9FF;
-            box-shadow: 0 10px 40px rgba(0, 217, 255, 0.2);
-        }
-
-        .pricing-card.featured {
-            border: 3px solid #00D9FF;
-            transform: scale(1.05);
-        }
-
-        .pricing-badge {
-            position: absolute;
-            top: -15px;
-            right: 30px;
-            background: #00D9FF;
-            color: #FFFFFF;
-            padding: 8px 20px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 700;
-        }
-
-        .pricing-card h3 {
-            font-size: 2rem;
-            font-weight: 800;
-            margin-bottom: 20px;
-            color: #1a1a1a;
-        }
-
-        .old-price {
-            text-decoration: line-through;
-            color: #999;
-            font-size: 1.2rem;
-            margin-bottom: 10px;
-        }
-
-        .price {
-            font-size: 3.5rem;
-            font-weight: 800;
-            color: #00D9FF;
-            margin-bottom: 10px;
-        }
-
-        .price-note {
-            color: #666;
-            font-size: 0.95rem;
-            margin-bottom: 30px;
-        }
-
-        .pricing-features {
-            list-style: none;
-            margin-bottom: 40px;
-            text-align: left;
-        }
-
-        .pricing-features li {
-            padding: 12px 0;
-            color: #333;
-            font-size: 1rem;
-            border-bottom: 1px solid #f0f0f0;
-        }
-
-        .pricing-features li::before {
-            content: "✅";
-            margin-right: 10px;
-        }
-
-        .pricing-features li.disabled {
-            color: #ccc;
-        }
-
-        .pricing-features li.disabled::before {
-            content: "❌";
-        }
-
-        .discount-banner {
-            background: linear-gradient(135deg, #FFF9E6 0%, #FFE6E6 100%);
-            padding: 25px;
-            border-radius: 12px;
-            text-align: center;
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: #1a1a1a;
-            margin-bottom: 30px;
-        }
-
-        .question-link {
-            text-align: center;
-            margin-top: 30px;
-        }
-
-        .question-link a {
-            color: #00D9FF;
-            text-decoration: none;
-            font-size: 1.1rem;
-            font-weight: 600;
-            border-bottom: 2px solid transparent;
-            transition: border-color 0.3s;
-        }
-
-        .question-link a:hover {
-            border-bottom-color: #00D9FF;
-        }
-
-        /* Author */
-        .author-container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: #FFFFFF;
-            padding: 60px;
-            border-radius: 20px;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
-            text-align: center;
-        }
-
-        .author-photo {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #00D9FF 0%, #0099CC 100%);
-            margin: 0 auto 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4rem;
-            color: #FFFFFF;
-        }
-
-        .author-container h3 {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-            color: #1a1a1a;
-        }
-
-        .author-role {
-            color: #00D9FF;
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 30px;
-        }
-
-        .author-container p {
-            color: #666;
-            font-size: 1.1rem;
-            line-height: 1.8;
-            margin-bottom: 15px;
-        }
-
-        /* FAQ */
-        .faq-container {
             max-width: 900px;
             margin: 0 auto;
         }
 
+        .pricing-note {
+            text-align: center;
+            background: var(--warm-white);
+            padding: 20px 32px;
+            border-radius: 100px;
+            margin-bottom: 48px;
+            border: 1px solid var(--sand);
+            color: var(--charcoal);
+            font-weight: 500;
+        }
+
+        .pricing-note .dot {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: var(--terracotta);
+            border-radius: 50%;
+            margin-right: 12px;
+            animation: pulse 2s infinite;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+            margin-bottom: 48px;
+        }
+
+        .pricing-card {
+            background: var(--warm-white);
+            padding: 48px 40px;
+            border-radius: 24px;
+            border: 1px solid var(--sand);
+            text-align: center;
+            position: relative;
+            transition: all 0.4s ease;
+        }
+
+        .pricing-card:hover {
+            border-color: var(--terracotta);
+        }
+
+        .pricing-card.featured {
+            border: 2px solid var(--terracotta);
+            background: var(--cream);
+        }
+
+        .pricing-badge {
+            position: absolute;
+            top: -14px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--terracotta);
+            color: var(--warm-white);
+            padding: 8px 20px;
+            border-radius: 100px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        .pricing-card h3 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.8rem;
+            font-weight: 400;
+            margin-bottom: 24px;
+            color: var(--charcoal);
+        }
+
+        .old-price {
+            text-decoration: line-through;
+            color: var(--light-gray);
+            font-size: 1rem;
+            margin-bottom: 8px;
+        }
+
+        .price {
+            font-family: 'DM Serif Display', serif;
+            font-size: 2.8rem;
+            font-weight: 400;
+            color: var(--charcoal);
+            margin-bottom: 8px;
+        }
+
+        .price-note {
+            color: var(--warm-gray);
+            font-size: 0.9rem;
+            margin-bottom: 32px;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 36px;
+            text-align: left;
+        }
+
+        .pricing-features li {
+            padding: 14px 0;
+            color: var(--charcoal);
+            font-size: 0.95rem;
+            border-bottom: 1px solid var(--sand);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .pricing-features li::before {
+            content: "";
+            width: 18px;
+            height: 18px;
+            min-width: 18px;
+            border: 2px solid var(--terracotta);
+            border-radius: 50%;
+            position: relative;
+        }
+
+        .pricing-features li.included::before {
+            background: var(--terracotta);
+            box-shadow: inset 0 0 0 3px var(--warm-white);
+        }
+
+        .pricing-features li.disabled {
+            color: var(--light-gray);
+        }
+
+        .pricing-features li.disabled::before {
+            border-color: var(--sand);
+        }
+
+        .question-block {
+            text-align: center;
+            padding: 48px;
+            background: var(--warm-white);
+            border-radius: 24px;
+            border: 1px solid var(--sand);
+        }
+
+        .question-block p {
+            color: var(--warm-gray);
+            margin-bottom: 24px;
+            font-size: 1.1rem;
+        }
+
+        /* FAQ */
+        .faq-container {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
         .faq-item {
-            background: #FFFFFF;
-            margin-bottom: 20px;
-            border-radius: 12px;
+            background: var(--warm-white);
+            margin-bottom: 16px;
+            border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--sand);
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            border-color: var(--terracotta);
         }
 
         .faq-question {
-            padding: 25px 30px;
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: #1a1a1a;
+            padding: 24px 28px;
+            font-size: 1.05rem;
+            font-weight: 500;
+            color: var(--charcoal);
             cursor: pointer;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            transition: background 0.3s;
-        }
-
-        .faq-question:hover {
-            background: #F8F9FA;
+            transition: all 0.3s;
         }
 
         .faq-question::after {
             content: "+";
-            font-size: 2rem;
-            font-weight: 700;
-            color: #00D9FF;
+            font-size: 1.5rem;
+            font-weight: 400;
+            color: var(--terracotta);
+            transition: transform 0.3s ease;
         }
 
         .faq-answer {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.3s ease;
+            transition: max-height 0.4s ease;
         }
 
         .faq-answer-content {
-            padding: 0 30px 25px;
-            color: #666;
+            padding: 0 28px 24px;
+            color: var(--warm-gray);
             font-size: 1rem;
             line-height: 1.8;
         }
@@ -674,58 +792,39 @@
         }
 
         .faq-item.active .faq-question::after {
-            content: "−";
-        }
-
-        /* Social Proof */
-        .social-proof {
-            max-width: 800px;
-            margin: 0 auto;
-            background: linear-gradient(135deg, #F8F9FA 0%, #FFFFFF 100%);
-            padding: 50px;
-            border-radius: 20px;
-            text-align: center;
-            border: 2px solid #00D9FF;
-        }
-
-        .social-proof h3 {
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 20px;
-            color: #1a1a1a;
-        }
-
-        .social-proof p {
-            font-size: 1.1rem;
-            color: #666;
-            line-height: 1.8;
+            transform: rotate(45deg);
         }
 
         /* Footer */
         footer {
-            background: #1a1a1a;
-            color: #FFFFFF;
-            padding: 60px 20px;
+            background: var(--charcoal);
+            color: var(--sand);
+            padding: 60px 24px;
             text-align: center;
         }
 
         .footer-content {
-            max-width: 1200px;
+            max-width: 600px;
             margin: 0 auto;
         }
 
+        .footer-content p {
+            font-size: 0.95rem;
+            line-height: 1.8;
+        }
+
         .footer-links {
-            margin-top: 30px;
+            margin-top: 32px;
             display: flex;
             justify-content: center;
-            gap: 30px;
+            gap: 32px;
             flex-wrap: wrap;
         }
 
         .footer-links a {
-            color: #00D9FF;
+            color: var(--terracotta);
             text-decoration: none;
-            font-size: 1rem;
+            font-size: 0.95rem;
             transition: opacity 0.3s;
         }
 
@@ -735,390 +834,205 @@
 
         /* Animations */
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .fade-in {
             animation: fadeIn 0.8s ease-out;
         }
 
-        /* Responsive — Tablet */
-        @media (max-width: 1024px) and (min-width: 769px) {
+        /* Responsive */
+        @media (max-width: 1024px) {
             .problem-grid {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: 1fr;
+            }
+
+            .problem-card:nth-child(2),
+            .problem-card:nth-child(4) {
+                transform: none;
             }
 
             .format-grid {
                 grid-template-columns: repeat(2, 1fr);
+            }
+
+            .principles-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .for-whom-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
             }
         }
 
-        /* Responsive — Mobile (iPhone 15/16 = 393px) */
         @media (max-width: 768px) {
-            /* Global spacing */
             section {
-                padding: 40px 16px;
+                padding: 50px 20px;
             }
 
-            .container {
-                padding: 0 4px;
-            }
-
-            /* Hero */
             .hero {
                 min-height: auto;
-                padding: 60px 16px 40px;
-                padding-top: calc(60px + env(safe-area-inset-top));
+                padding: 80px 20px 60px;
             }
 
             .hero h1 {
-                font-size: 2.4rem;
-                margin-bottom: 16px;
+                font-size: 2.2rem;
             }
 
             .hero-subtitle {
-                font-size: 1.05rem;
-                margin-bottom: 20px;
+                font-size: 1rem;
             }
 
-            /* Urgency */
-            .urgency {
-                margin-bottom: 24px;
-            }
-
-            .urgency-main {
-                padding: 12px 18px;
-                border-radius: 16px;
-                font-size: 0.9rem;
-                gap: 10px;
-                text-align: left;
-            }
-
-            .countdown {
-                font-size: 0.85rem;
-            }
-
-            /* CTA — full width on mobile */
-            .cta-button {
-                display: block;
-                width: 100%;
-                padding: 18px 24px;
-                font-size: 1.1rem;
-                text-align: center;
-                border-radius: 14px;
-            }
-
-            /* Section titles */
             .section-title {
                 font-size: 1.8rem;
-                margin-bottom: 28px;
+                margin-bottom: 40px;
             }
 
-            /* Problem cards */
-            .problem-grid,
             .format-grid {
                 grid-template-columns: 1fr;
-                gap: 16px;
             }
 
-            .problem-card {
-                padding: 24px 20px;
-            }
-
-            .problem-card h3 {
-                font-size: 1.25rem;
-                margin-bottom: 12px;
-            }
-
-            .problem-card p {
-                font-size: 0.95rem;
-                margin-bottom: 6px;
-            }
-
-            /* Checklist */
-            .checklist {
-                padding: 24px 18px;
-                border-radius: 16px;
-            }
-
-            .checklist-title {
-                font-size: 1.4rem;
-                margin-bottom: 20px;
-            }
-
-            .checklist li {
-                font-size: 1.05rem;
-                padding: 12px 0;
-            }
-
-            .anti-target {
-                font-size: 0.9rem;
-                margin-top: 24px;
-            }
-
-            /* Format items */
-            .format-item {
-                padding: 24px 20px;
-            }
-
-            .format-icon {
-                font-size: 2.4rem;
-                margin-bottom: 14px;
-            }
-
-            .format-item h3 {
-                font-size: 1.2rem;
-                margin-bottom: 10px;
-            }
-
-            /* Transformation */
-            .transformation {
-                padding: 24px 18px;
-                border-radius: 16px;
-                margin: 28px auto;
-            }
-
-            .point {
-                padding: 22px 18px;
-                margin-bottom: 20px;
-            }
-
-            .point h3 {
-                font-size: 1.15rem;
-                margin-bottom: 10px;
-            }
-
-            .point p {
-                font-size: 1rem;
-            }
-
-            .arrow {
-                font-size: 2rem;
-                margin: 14px 0;
-            }
-
-            /* Principle / Promise cards */
-            .principles-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-
-            .principle-card {
-                padding: 32px 22px;
-            }
-
-            .principle-number {
-                font-size: 2.8rem;
-                margin-bottom: 10px;
-            }
-
-            .principle-card h3 {
-                font-size: 1.3rem;
-                margin-bottom: 14px;
-            }
-
-            .principle-card li {
-                font-size: 0.95rem;
-                padding: 8px 0;
-                padding-left: 22px;
-            }
-
-            /* Skills tabs — horizontal scroll */
-            .skills-tabs {
-                flex-direction: row;
-                flex-wrap: nowrap;
-                overflow-x: auto;
-                -webkit-overflow-scrolling: touch;
-                gap: 8px;
-                padding-bottom: 8px;
-                margin-bottom: 24px;
-                scrollbar-width: none;
-            }
-
-            .skills-tabs::-webkit-scrollbar {
-                display: none;
-            }
-
-            .skill-tab {
-                flex-shrink: 0;
-                padding: 12px 20px;
-                font-size: 0.9rem;
-                white-space: nowrap;
-            }
-
-            .skill-panel {
-                padding: 24px 18px;
-                border-radius: 16px;
-            }
-
-            .skill-panel h3 {
-                font-size: 1.4rem;
-                margin-bottom: 16px;
-            }
-
-            .skill-panel li {
-                font-size: 1rem;
-                padding: 10px 0;
-                padding-left: 26px;
-            }
-
-            /* Pricing */
             .pricing-grid {
                 grid-template-columns: 1fr;
-                gap: 24px;
-            }
-
-            .pricing-card {
-                padding: 36px 24px;
             }
 
             .pricing-card.featured {
-                transform: scale(1);
+                order: -1;
             }
 
-            .pricing-card h3 {
-                font-size: 1.6rem;
+            .skills-tabs {
+                gap: 6px;
             }
 
-            .price {
-                font-size: 2.6rem;
+            .skill-tab {
+                padding: 10px 16px;
+                font-size: 0.85rem;
             }
 
-            .old-price {
-                font-size: 1.05rem;
+            .skill-panel {
+                padding: 32px 24px;
             }
 
-            .pricing-features li {
-                font-size: 0.95rem;
-                padding: 10px 0;
+            .cta-button {
+                display: block;
+                width: 100%;
+                text-align: center;
             }
 
-            .discount-banner {
-                font-size: 1rem;
-                padding: 18px 16px;
-                border-radius: 12px;
+            .checklist {
+                padding: 28px 24px;
             }
 
-            /* FAQ */
-            .faq-question {
-                padding: 20px 18px;
-                font-size: 1.05rem;
+            .pricing-card {
+                padding: 36px 28px;
             }
 
-            .faq-answer-content {
-                padding: 0 18px 20px;
-                font-size: 0.95rem;
-            }
-
-            /* Final CTA */
-            .author-container {
-                padding: 36px 20px;
-                border-radius: 16px;
-            }
-
-            /* Footer safe area */
             footer {
-                padding: 40px 16px;
-                padding-bottom: calc(40px + env(safe-area-inset-bottom));
-            }
-
-            .footer-links {
-                gap: 20px;
+                padding: 48px 20px;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- HERO SECTION -->
+    <!-- HERO -->
     <section class="hero">
         <div class="hero-content fade-in">
+            <div class="hero-eyebrow">Практический курс</div>
             <h1>ИИ-разгон: <br><span>пока другие гуглят</span></h1>
             <p class="hero-subtitle">Все вокруг уже используют ИИ — быстрее пишут, быстрее запускают, быстрее растут. Покажем по шагам: куда зайти, что написать и как получить результат, который не стыдно использовать.</p>
             <div class="urgency">
                 <div class="urgency-main">
-                    ⏰ Старт 7 марта 2026 – успей на раннее бронирование!
+                    <span class="dot"></span>
+                    Старт 7 марта 2026 — успей на раннее бронирование
                 </div>
                 <div class="countdown">
-                    Осталось <strong id="days-left">23</strong> дня до окончания раннего бронирования
+                    Осталось <strong id="days-left">23</strong> дня до окончания скидки
                 </div>
             </div>
-            <a href="https://t.me/krasseg?text=Привет!%20Хочу%20оставить%20заявку%20на%20курс%20ИИ-разгон,%20давай%20обсудим!" target="_blank" class="cta-button" style="color: #FFFFFF !important;">Оставить заявку на участие</a>
+            <a href="https://t.me/krasseg?text=Привет!%20Хочу%20оставить%20заявку%20на%20курс%20ИИ-разгон,%20давай%20обсудим!" target="_blank" class="cta-button">Оставить заявку</a>
         </div>
     </section>
 
-    
-<!-- PROBLEM -->
+    <!-- PROBLEM -->
     <section id="problem" class="section-alt">
         <div class="container">
-            <h2 class="section-title">Знакомая ситуация?</h2>
+            <div class="section-label">Знакомо?</div>
+            <h2 class="section-title">Ситуации, с которыми вы сталкиваетесь</h2>
             <div class="problem-grid">
                 <div class="problem-card fade-in">
-                    <h3>"Все уже используют, а я нет"</h3>
-                    <p>Коллеги быстрее пишут, быстрее запускают</p>
-                    <p>Между «знаю, что надо» и «делаю» — пропасть</p>
-                    <p>Постоянное FOMO</p>
+                    <h3>«Все уже используют, а я нет»</h3>
+                    <ul>
+                        <li>Коллеги быстрее пишут, быстрее запускают</li>
+                        <li>Между «знаю, что надо» и «делаю» — пропасть</li>
+                        <li>Постоянное FOMO</li>
+                    </ul>
                 </div>
                 <div class="problem-card fade-in">
-                    <h3>"С чего вообще начать?"</h3>
-                    <p>GPT, Claude, Gemini — какой выбрать?</p>
-                    <p>Сколько это стоит? Как оплатить?</p>
-                    <p>30 сервисов в рекомендациях — а нужно 2-3</p>
+                    <h3>«С чего вообще начать?»</h3>
+                    <ul>
+                        <li>GPT, Claude, Gemini — какой выбрать?</li>
+                        <li>Сколько это стоит? Как оплатить?</li>
+                        <li>30 сервисов в рекомендациях — а нужно 2-3</li>
+                    </ul>
                 </div>
                 <div class="problem-card fade-in">
-                    <h3>"ИИ пишет шаблонно"</h3>
-                    <p>Просишь написать пост и получаешь ИИшный текст</p>
-                    <p>Клиенты не верят =/</p>
-                    <p>Теряешь доверие своей аудитории</p>
+                    <h3>«ИИ пишет шаблонно»</h3>
+                    <ul>
+                        <li>Просишь написать пост — получаешь ИИшный текст</li>
+                        <li>Клиенты не верят</li>
+                        <li>Теряешь доверие своей аудитории</li>
+                    </ul>
                 </div>
                 <div class="problem-card fade-in">
-                    <h3>"Рутина крадет время"</h3>
-                    <p>Нужно придумывать идеи, структурировать мысли, иметь план публикаций</p>
-                    <p>Процесс хаотичный</p>
-                    <p>Вдохновение непредсказуемо</p>
+                    <h3>«Рутина крадёт время»</h3>
+                    <ul>
+                        <li>Нужно придумывать идеи, структурировать мысли</li>
+                        <li>Процесс хаотичный</li>
+                        <li>Вдохновение непредсказуемо</li>
+                    </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    
-<!-- FOR WHOM -->
+    <!-- FOR WHOM -->
     <section id="for-whom">
         <div class="container">
-            <h2 class="section-title">Для кого этот курс</h2>
-            <div class="checklist fade-in">
-                <p class="checklist-title">Этот курс для вас, если вы:</p>
-                <ul>
-                    <li>Вы продаете свою экспертизу как коуч, диетолог, консультант или бизнес-тренер</li>
-                    <li>Продвигаетесь через контент в Telegram/Instagram/YouTube</li>
-                    <li>Используете ChatGPT (или другой ИИ), но результат получается "как у всех" (или пока что есть сложность КАК начать)</li>
-                    <li>Чувствуете FOMO: вокруг все активно используют ИИ, а вы не понимаете КАК именно</li>
-                    <li>Хотите встроить ИИ осознанно, без потери авторского голоса</li>
-                </ul>
-                <div class="anti-target">
-                    Это не для вас, если вы хотите узнать теорию ИИ или начать вайбкодить :)
+            <div class="for-whom-content">
+                <div class="for-whom-intro">
+                    <div class="section-label">Для кого</div>
+                    <h2>Этот курс для вас, если...</h2>
+                    <p>Курс создан для экспертов, которые продвигаются через контент и хотят использовать ИИ осознанно, без потери авторского голоса.</p>
+                </div>
+                <div class="checklist fade-in">
+                    <ul>
+                        <li>Вы продаёте свою экспертизу как коуч, диетолог, консультант или бизнес-тренер</li>
+                        <li>Продвигаетесь через контент в Telegram, Instagram или YouTube</li>
+                        <li>Используете ChatGPT, но результат получается «как у всех»</li>
+                        <li>Чувствуете FOMO: все активно используют ИИ, а вы не понимаете как</li>
+                        <li>Хотите встроить ИИ осознанно, сохранив свой голос</li>
+                    </ul>
+                    <div class="anti-target">
+                        Не подойдёт, если хотите изучать теорию ИИ или начать программировать
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    
-<!-- FORMAT -->
+    <!-- FORMAT -->
     <section id="format" class="section-alt">
         <div class="container">
-            <h2 class="section-title">Как проходит обучение</h2>
+            <div class="section-label">Формат</div>
+            <h2 class="section-title center">Как проходит обучение</h2>
             <div class="format-grid">
                 <div class="format-item fade-in">
                     <div class="format-icon">📅</div>
-                    <h3>Zoom созвоны</h3>
-                    <p>6 недель | Live воркшопы каждую неделю по 1.5 часа (созвоны в Zoom)</p>
+                    <h3>Zoom-созвоны</h3>
+                    <p>6 недель, live-воркшопы каждую неделю по 1.5 часа</p>
                 </div>
                 <div class="format-item fade-in">
                     <div class="format-icon">💬</div>
@@ -1127,42 +1041,44 @@
                 </div>
                 <div class="format-item fade-in">
                     <div class="format-icon">🖥️</div>
-                    <h3>Воркшопы</h3>
-                    <p>Включаем screen-share, показываем по шагам что делать и вы делаете вместе с нами</p>
+                    <h3>Screen-share</h3>
+                    <p>Показываем по шагам, что делать — вы делаете вместе с нами</p>
                 </div>
                 <div class="format-item fade-in">
                     <div class="format-icon">📋</div>
                     <h3>Домашки</h3>
-                    <p>Конкретные задачи между встречами, а с нас – проверка и обсуждение</p>
+                    <p>Конкретные задачи между встречами с проверкой и обсуждением</p>
                 </div>
             </div>
         </div>
     </section>
 
-    
-<!-- SOLUTION -->
+    <!-- SOLUTION -->
     <section id="solution">
         <div class="container">
-            <h2 class="section-title">Что если ИИ станет вашим усилителем, а не угрозой?</h2>
-            <div class="transformation fade-in">
-                <div class="point">
-                    <h3>ТОЧКА А</h3>
-                    <p>"Я знаю, что ИИ может помочь в работе, но между «знаю» и «делаю» — пропасть. Нет времени разбираться, нет уверенности что делаю правильно, и каждая попытка заканчивается шаблонным текстом."</p>
+            <div class="section-label">Трансформация</div>
+            <h2 class="section-title center">Что если ИИ станет вашим усилителем?</h2>
+            <div class="transformation">
+                <div class="transformation-point fade-in">
+                    <div class="transformation-label">Точка А — Сейчас</div>
+                    <p>«Я знаю, что ИИ может помочь в работе, но между «знаю» и «делаю» — пропасть. Нет времени разбираться, нет уверенности что делаю правильно, и каждая попытка заканчивается шаблонным текстом.»</p>
                 </div>
-                <div class="arrow">↓ 6 НЕДЕЛЬ ↓</div>
-                <div class="point">
-                    <h3>ТОЧКА Б</h3>
-                    <p>"У меня есть 2-3 инструмента, я точно знаю, что с ними делать, каждую неделю экономлю несколько часов на рутине — и зарабатываю больше, потому что у меня есть работающая система."</p>
+                <div class="transformation-arrow">
+                    <span>6 недель</span>
+                </div>
+                <div class="transformation-point after fade-in">
+                    <div class="transformation-label">Точка Б — После курса</div>
+                    <p>«У меня есть 2-3 инструмента, я точно знаю, что с ними делать, каждую неделю экономлю несколько часов на рутине — и зарабатываю больше, потому что у меня есть работающая система.»</p>
                 </div>
             </div>
         </div>
     </section>
 
-
-<!-- PROMISES -->
+    <!-- PROMISES -->
     <section id="promises" class="section-alt">
         <div class="container">
-            <h2 class="section-title">Что вы получите</h2>
+            <div class="section-label">Результат</div>
+            <h2 class="section-title center">Что вы получите</h2>
             <div class="principles-grid">
                 <div class="principle-card fade-in">
                     <div class="principle-number">01</div>
@@ -1177,8 +1093,8 @@
                     <div class="principle-number">02</div>
                     <h3>Ваш набор из нескольких инструментов</h3>
                     <ul>
-                        <li>Вместо списка из 30 сервисов – только нужные инструменты</li>
-                        <li>Настроенные и проверенные под ваши задачи</li>
+                        <li>Вместо списка из 30 сервисов — только нужные</li>
+                        <li>Настроенные под ваши задачи</li>
                         <li>Знаете, как и когда применять каждый</li>
                     </ul>
                 </div>
@@ -1195,183 +1111,187 @@
         </div>
     </section>
 
-
-<!-- HOW IT WORKS -->
-    <section id="how-it-works" class="section-alt">
+    <!-- HOW IT WORKS -->
+    <section id="how-it-works">
         <div class="container">
-            <h2 class="section-title">Почему это работает</h2>
+            <div class="section-label">Почему работает</div>
+            <h2 class="section-title center">Принципы обучения</h2>
             <div class="principles-grid">
                 <div class="principle-card fade-in">
                     <div class="principle-number">01</div>
                     <h3>Живые воркшопы</h3>
                     <ul>
-                        <li>Вместе — в реальном времени — пишем промпты и смотрим результат</li>
+                        <li>Вместе пишем промпты и смотрим результат</li>
                         <li>Адаптируем под ваши задачи прямо на созвоне</li>
-                        <li>После каждой встречи сразу можете применить то, что узнали</li>
+                        <li>Сразу можете применить то, что узнали</li>
                     </ul>
                 </div>
                 <div class="principle-card fade-in">
                     <div class="principle-number">02</div>
-                    <h3>Коммьюнити участников с похожими задачами</h3>
+                    <h3>Коммьюнити участников</h3>
                     <ul>
                         <li>Группа из 10-15 участников</li>
-                        <li>Делимся своими успехами и задаем вопросы</li>
-                        <li>Вы не одни — рядом люди, которые решают те же задачи</li>
+                        <li>Делимся успехами и задаём вопросы</li>
+                        <li>Рядом люди, которые решают те же задачи</li>
                     </ul>
                 </div>
                 <div class="principle-card fade-in">
                     <div class="principle-number">03</div>
                     <h3>Выделенное время для роста</h3>
                     <ul>
-                        <li>Конкретное время в календаре: 1.5 часа в неделю полного погружения</li>
-                        <li>Не «посмотрю на выходных», а реальное продвижение каждую неделю</li>
-                        <li>Дисциплина и структура вместо хаотичного самообучения</li>
+                        <li>1.5 часа в неделю полного погружения</li>
+                        <li>Реальное продвижение каждую неделю</li>
+                        <li>Структура вместо хаотичного самообучения</li>
                     </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    
-<!-- SKILLS -->
-    <section id="skills">
+    <!-- SKILLS -->
+    <section id="skills" class="section-alt">
         <div class="container">
-            <h2 class="section-title">Программа: 6 недель</h2>
-            <div class="skills-tabs">
-                <div class="skill-tab active" data-week="1">Неделя 1</div>
-                <div class="skill-tab" data-week="2">Неделя 2</div>
-                <div class="skill-tab" data-week="3">Неделя 3</div>
-                <div class="skill-tab" data-week="4">Неделя 4</div>
-                <div class="skill-tab" data-week="5">Неделя 5</div>
-                <div class="skill-tab" data-week="6">Неделя 6</div>
-            </div>
-            <div class="skills-content">
-                <div class="skill-panel active" data-week="1">
-                    <h3>Неделя 1: Авторский голос в ИИ</h3>
-                    <ul>
-                        <li>Создаём "файл голоса" с вашим стилем</li>
-                        <li>ИИ помогает из сырой идеи дойти до поста, который звучит как вы</li>
-                        <li>Избавляемся от шаблонного контента</li>
-                    </ul>
+            <div class="section-label">Программа</div>
+            <h2 class="section-title center">6 недель трансформации</h2>
+            <div class="skills-section">
+                <div class="skills-tabs">
+                    <div class="skill-tab active" data-week="1">Неделя 1</div>
+                    <div class="skill-tab" data-week="2">Неделя 2</div>
+                    <div class="skill-tab" data-week="3">Неделя 3</div>
+                    <div class="skill-tab" data-week="4">Неделя 4</div>
+                    <div class="skill-tab" data-week="5">Неделя 5</div>
+                    <div class="skill-tab" data-week="6">Неделя 6</div>
                 </div>
-                <div class="skill-panel" data-week="2">
-                    <h3>Неделя 2: Системный контент-процесс</h3>
-                    <ul>
-                        <li>От идеи до публикации за 30-40 минут</li>
-                        <li>Контент-матрица на месяц вперёд</li>
-                        <li>Больше никакого хаоса и "то вдохновение есть, то нет"</li>
-                    </ul>
-                </div>
-                <div class="skill-panel" data-week="3">
-                    <h3>Неделя 3: Визуальная упаковка без дизайнера</h3>
-                    <ul>
-                        <li>Midjourney/DALL-E для обложек и постов</li>
-                        <li>Создание фирменного визуального стиля</li>
-                        <li>10-15 уникальных изображений за занятие</li>
-                    </ul>
-                </div>
-                <div class="skill-panel" data-week="4">
-                    <h3>Неделя 4: Работа с экспертным контекстом</h3>
-                    <ul>
-                        <li>NotebookLM для работы с документами и источниками</li>
-                        <li>База знаний из ваших материалов</li>
-                        <li>Экспертный контент с обоснованием за минуты</li>
-                    </ul>
-                </div>
-                <div class="skill-panel" data-week="5">
-                    <h3>Неделя 5: Умная автоматизация</h3>
-                    <ul>
-                        <li>Zapier/Make/n8n для рутинных процессов</li>
-                        <li>Минимум 1 работающая автоматизация</li>
-                        <li>Экономия 1-2 часа в неделю на автопилоте</li>
-                    </ul>
-                </div>
-                <div class="skill-panel" data-week="6">
-                    <h3>Неделя 6: Личная AI-экосистема</h3>
-                    <ul>
-                        <li>Минималистичный AI-стек (3-5 инструментов max)</li>
-                        <li>Стратегия развития на 6 месяцев</li>
-                        <li>Итого: 30-40 часов экономии в месяц</li>
-                    </ul>
+                <div class="skills-content">
+                    <div class="skill-panel active" data-week="1">
+                        <h3>Авторский голос в ИИ</h3>
+                        <ul>
+                            <li>Создаём «файл голоса» с вашим стилем</li>
+                            <li>ИИ помогает из сырой идеи дойти до поста, который звучит как вы</li>
+                            <li>Избавляемся от шаблонного контента</li>
+                        </ul>
+                    </div>
+                    <div class="skill-panel" data-week="2">
+                        <h3>Системный контент-процесс</h3>
+                        <ul>
+                            <li>От идеи до публикации за 30-40 минут</li>
+                            <li>Контент-матрица на месяц вперёд</li>
+                            <li>Больше никакого хаоса и «то вдохновение есть, то нет»</li>
+                        </ul>
+                    </div>
+                    <div class="skill-panel" data-week="3">
+                        <h3>Визуальная упаковка без дизайнера</h3>
+                        <ul>
+                            <li>Midjourney и DALL-E для обложек и постов</li>
+                            <li>Создание фирменного визуального стиля</li>
+                            <li>10-15 уникальных изображений за занятие</li>
+                        </ul>
+                    </div>
+                    <div class="skill-panel" data-week="4">
+                        <h3>Работа с экспертным контекстом</h3>
+                        <ul>
+                            <li>NotebookLM для работы с документами и источниками</li>
+                            <li>База знаний из ваших материалов</li>
+                            <li>Экспертный контент с обоснованием за минуты</li>
+                        </ul>
+                    </div>
+                    <div class="skill-panel" data-week="5">
+                        <h3>Умная автоматизация</h3>
+                        <ul>
+                            <li>Zapier, Make, n8n для рутинных процессов</li>
+                            <li>Минимум 1 работающая автоматизация</li>
+                            <li>Экономия 1-2 часа в неделю на автопилоте</li>
+                        </ul>
+                    </div>
+                    <div class="skill-panel" data-week="6">
+                        <h3>Личная AI-экосистема</h3>
+                        <ul>
+                            <li>Минималистичный AI-стек из 3-5 инструментов</li>
+                            <li>Стратегия развития на 6 месяцев</li>
+                            <li>Итого: 30-40 часов экономии в месяц</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    
-<!-- PRICING -->
+    <!-- PRICING -->
     <section id="pricing">
         <div class="container">
-            <h2 class="section-title">Выберите свой пакет</h2>
+            <div class="section-label">Тарифы</div>
+            <h2 class="section-title center">Выберите свой пакет</h2>
             <div class="pricing-container">
-                <div class="discount-banner fade-in">
-                    ⏰ Раннее бронирование до 28 февраля – успей на скидку!
+                <div class="pricing-note fade-in">
+                    <span class="dot"></span>
+                    Раннее бронирование до 28 февраля — успей на скидку
                 </div>
                 <div class="pricing-grid">
                     <div class="pricing-card fade-in">
-                        <h3>LIGHT</h3>
+                        <h3>Light</h3>
                         <div class="old-price">23 000 ₽ / $300</div>
-                        <div class="price">19 000 ₽ / $250</div>
-                        <div class="price-note">до 28 февраля</div>
+                        <div class="price">19 000 ₽</div>
+                        <div class="price-note">или $250 до 28 февраля</div>
                         <ul class="pricing-features">
-                            <li>Лекции и воркшопы</li>
-                            <li>Telegram-чат</li>
-                            <li>Обсуждение домашек</li>
+                            <li class="included">Лекции и воркшопы</li>
+                            <li class="included">Telegram-чат</li>
+                            <li class="included">Обсуждение домашек</li>
                             <li class="disabled">3 персональных разбора</li>
                             <li class="disabled">Записи всех встреч</li>
                         </ul>
-                        <a href="https://t.me/krasseg?text=Привет!%20Хочу%20оставить%20заявку%20на%20курс%20ИИ-разгон%20(тариф%20Light),%20давай%20обсудим!" target="_blank" class="cta-button" style="color: #FFFFFF !important;">Выбрать Light</a>
+                        <a href="https://t.me/krasseg?text=Привет!%20Хочу%20оставить%20заявку%20на%20курс%20ИИ-разгон%20(тариф%20Light),%20давай%20обсудим!" target="_blank" class="cta-button">Выбрать Light</a>
                     </div>
                     <div class="pricing-card featured fade-in">
-                        <div class="pricing-badge">⭐ ПОПУЛЯРНЫЙ</div>
-                        <h3>FULL</h3>
+                        <div class="pricing-badge">Популярный</div>
+                        <h3>Full</h3>
                         <div class="old-price">34 000 ₽ / $450</div>
-                        <div class="price">27 000 ₽ / $350</div>
-                        <div class="price-note">до 28 февраля</div>
+                        <div class="price">27 000 ₽</div>
+                        <div class="price-note">или $350 до 28 февраля</div>
                         <ul class="pricing-features">
-                            <li>Лекции и воркшопы</li>
-                            <li>Telegram-чат</li>
-                            <li>Обсуждение домашек</li>
-                            <li>3 персональных разбора</li>
-                            <li>Записи всех встреч</li>
+                            <li class="included">Лекции и воркшопы</li>
+                            <li class="included">Telegram-чат</li>
+                            <li class="included">Обсуждение домашек</li>
+                            <li class="included">3 персональных разбора</li>
+                            <li class="included">Записи всех встреч</li>
                         </ul>
-                        <a href="https://t.me/krasseg?text=Привет!%20Хочу%20оставить%20заявку%20на%20курс%20ИИ-разгон%20(тариф%20Full),%20давай%20обсудим!" target="_blank" class="cta-button" style="color: #FFFFFF !important;">Выбрать Full</a>
+                        <a href="https://t.me/krasseg?text=Привет!%20Хочу%20оставить%20заявку%20на%20курс%20ИИ-разгон%20(тариф%20Full),%20давай%20обсудим!" target="_blank" class="cta-button">Выбрать Full</a>
                     </div>
                 </div>
-                <div class="question-link" style="margin-top: 40px;">
-                    <a href="https://t.me/krasseg?text=Привет!%20У%20меня%20есть%20вопрос%20про%20курс%20ИИ-разгон" target="_blank" class="cta-button" style="display: inline-block; font-size: 1.1rem; color: #FFFFFF !important;">Есть вопросы? Напишите в Telegram</a>
+                <div class="question-block fade-in">
+                    <p>Остались вопросы? Напишите — обсудим, какой формат вам подойдёт</p>
+                    <a href="https://t.me/krasseg?text=Привет!%20У%20меня%20есть%20вопрос%20про%20курс%20ИИ-разгон" target="_blank" class="cta-button">Написать в Telegram</a>
                 </div>
             </div>
         </div>
     </section>
 
-    
-<!-- FAQ -->
-    <section id="faq">
+    <!-- FAQ -->
+    <section id="faq" class="section-alt">
         <div class="container">
-            <h2 class="section-title">Частые вопросы</h2>
+            <div class="section-label">Вопросы</div>
+            <h2 class="section-title center">Частые вопросы</h2>
             <div class="faq-container">
                 <div class="faq-item">
                     <div class="faq-question">У меня нет технического бэкграунда. Я справлюсь?</div>
                     <div class="faq-answer">
                         <div class="faq-answer-content">
-                            Да! Курс для НЕтехнарей. Показываем всё по шагам, без сложных терминов.
+                            Да! Курс создан для нетехнарей. Показываем всё по шагам, без сложных терминов. Если умеете пользоваться браузером — справитесь.
                         </div>
                     </div>
                 </div>
                 <div class="faq-item">
-                    <div class="faq-question">Мне нужна подписка на ChatGPT/Claude/Gemini?</div>
+                    <div class="faq-question">Нужна ли подписка на ChatGPT, Claude или Gemini?</div>
                     <div class="faq-answer">
                         <div class="faq-answer-content">
-                            Желательно, но не обязательно для старта. Обсудим оптимальный вариант на первой встрече.
+                            Желательно, но не обязательно для старта. Обсудим оптимальный вариант на первой встрече — расскажем, что выбрать и как оплатить.
                         </div>
                     </div>
                 </div>
                 <div class="faq-item">
-                    <div class="faq-question">Я уже использую ChatGPT/Claude/Gemini. Мне всё равно нужен курс?</div>
+                    <div class="faq-question">Я уже использую ChatGPT. Мне всё равно нужен курс?</div>
                     <div class="faq-answer">
                         <div class="faq-answer-content">
-                            Если результат вас устраивает на 100% – возможно, нет. Если чувствуете, что используете 10% возможностей – точно да.
+                            Если результат вас устраивает на 100% — возможно, нет. Если чувствуете, что используете 10% возможностей или получаете шаблонные тексты — точно да.
                         </div>
                     </div>
                 </div>
@@ -1379,7 +1299,7 @@
                     <div class="faq-question">Сколько времени в неделю нужно?</div>
                     <div class="faq-answer">
                         <div class="faq-answer-content">
-                            1-1.5 часа на воркшоп + 1-2 часа на домашку. Итого: 2-3 часа в неделю.
+                            1-1.5 часа на воркшоп + 1-2 часа на домашку. Итого: 2-3 часа в неделю. Это инвестиция, которая быстро окупится сэкономленным временем.
                         </div>
                     </div>
                 </div>
@@ -1387,7 +1307,7 @@
                     <div class="faq-question">А если я пропущу встречу?</div>
                     <div class="faq-answer">
                         <div class="faq-answer-content">
-                            В пакете Full будут записи всех встреч! И можно наверстать обсуждением в чате.
+                            В пакете Full будут записи всех встреч. И всегда можно наверстать в чате — зададите вопросы, получите обратную связь.
                         </div>
                     </div>
                 </div>
@@ -1395,7 +1315,7 @@
                     <div class="faq-question">Это будет актуально через месяц? ИИ же быстро меняется</div>
                     <div class="faq-answer">
                         <div class="faq-answer-content">
-                            Учим не конкретным кнопкам, а принципам работы с ИИ. Инструменты могут меняться, но подход останется.
+                            Учим не конкретным кнопкам, а принципам работы с ИИ. Инструменты могут меняться, но подход останется. Это как научиться водить — потом можете сесть в любую машину.
                         </div>
                     </div>
                 </div>
@@ -1403,72 +1323,50 @@
         </div>
     </section>
 
-    
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <p>ИИ-разгон — практический курс для экспертов, которые хотят использовать ИИ осознанно и эффективно</p>
+            <div class="footer-links">
+                <a href="https://t.me/krasseg" target="_blank">Telegram</a>
+            </div>
+        </div>
+    </footer>
 
     <script>
-        // Countdown to Feb 28, 2026
+        // Countdown
         function updateCountdown() {
             const endDate = new Date('2026-02-28T23:59:59');
             const now = new Date();
             const diffTime = endDate - now;
             const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-
-            const daysElement = document.getElementById('days-left');
-            if (daysElement && diffDays > 0) {
-                daysElement.textContent = diffDays;
-            }
+            const el = document.getElementById('days-left');
+            if (el && diffDays > 0) el.textContent = diffDays;
         }
-
         updateCountdown();
 
         // Skills Tabs
         document.querySelectorAll('.skill-tab').forEach(tab => {
             tab.addEventListener('click', () => {
                 const week = tab.getAttribute('data-week');
-
-                // Remove active class from all tabs and panels
                 document.querySelectorAll('.skill-tab').forEach(t => t.classList.remove('active'));
                 document.querySelectorAll('.skill-panel').forEach(p => p.classList.remove('active'));
-
-                // Add active class to clicked tab and corresponding panel
                 tab.classList.add('active');
                 document.querySelector(`.skill-panel[data-week="${week}"]`).classList.add('active');
             });
         });
 
-        // FAQ Accordion
-        document.querySelectorAll('.faq-question').forEach(question => {
-            question.addEventListener('click', () => {
-                const item = question.parentElement;
+        // FAQ
+        document.querySelectorAll('.faq-question').forEach(q => {
+            q.addEventListener('click', () => {
+                const item = q.parentElement;
                 const wasActive = item.classList.contains('active');
-
-                // Close all items
                 document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
-
-                // Open clicked item if it wasn't active
-                if (!wasActive) {
-                    item.classList.add('active');
-                }
+                if (!wasActive) item.classList.add('active');
             });
         });
 
-        // Smooth scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            });
-        });
-
-        // Fade in animation on scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
+        // Fade in on scroll
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -1476,12 +1374,12 @@
                     entry.target.style.transform = 'translateY(0)';
                 }
             });
-        }, observerOptions);
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
         document.querySelectorAll('.fade-in').forEach(el => {
             el.style.opacity = '0';
-            el.style.transform = 'translateY(30px)';
-            el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
             observer.observe(el);
         });
     </script>
