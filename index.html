@@ -1599,6 +1599,170 @@ body {
   .for-who-icon { font-size: 2rem; }
   .for-who-card h3 { font-size: 0.75rem; }
 }
+
+/* ===== MODAL ===== */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(26, 26, 46, 0.8);
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal {
+  background: var(--bg-card);
+  border-radius: 24px;
+  padding: 40px;
+  max-width: 440px;
+  width: 100%;
+  position: relative;
+  transform: translateY(20px) scale(0.95);
+  transition: transform 0.3s ease;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.2);
+}
+
+.modal-overlay.active .modal {
+  transform: translateY(0) scale(1);
+}
+
+.modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 36px;
+  height: 36px;
+  border: none;
+  background: var(--bg-alt);
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  color: var(--text-light);
+  transition: all 0.2s;
+}
+
+.modal-close:hover {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.modal-title {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 8px;
+}
+
+.modal-subtitle {
+  font-size: 0.9rem;
+  color: var(--text-mid);
+  margin-bottom: 28px;
+}
+
+.modal-tariff {
+  display: inline-block;
+  font-family: 'Unbounded', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--accent);
+  background: var(--accent-soft);
+  padding: 6px 14px;
+  border-radius: 50px;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 18px;
+}
+
+.form-label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.form-input {
+  width: 100%;
+  padding: 14px 18px;
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 0.95rem;
+  color: var(--text);
+  background: var(--bg-alt);
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  outline: none;
+  transition: all 0.2s;
+}
+
+.form-input:focus {
+  border-color: var(--accent);
+  background: var(--bg-card);
+}
+
+.form-input::placeholder {
+  color: var(--text-light);
+}
+
+.form-submit {
+  width: 100%;
+  margin-top: 8px;
+}
+
+.form-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.form-success {
+  text-align: center;
+  padding: 20px 0;
+}
+
+.form-success-icon {
+  font-size: 3rem;
+  margin-bottom: 16px;
+}
+
+.form-success-title {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 8px;
+}
+
+.form-success-text {
+  font-size: 0.9rem;
+  color: var(--text-mid);
+}
+
+.form-error {
+  font-size: 0.8rem;
+  color: #DC2626;
+  margin-top: 12px;
+  text-align: center;
+}
+
+@media (max-width: 480px) {
+  .modal { padding: 28px 20px; }
+}
 </style>
 </head>
 <body>
@@ -2067,7 +2231,7 @@ body {
           <li class="disabled"><span class="check">—</span> Личная обратная связь по ДЗ</li>
           <li class="disabled"><span class="check">—</span> Разбор вашего кейса</li>
         </ul>
-        <a href="https://t.me/krasseg" target="_blank" class="btn-outline">Записаться</a>
+        <button class="btn-outline" onclick="openModal('Lite — 20 000 ₽')">Записаться</button>
       </div>
 
       <!-- Standard -->
@@ -2083,7 +2247,7 @@ body {
           <li><span class="check">✓</span> Личная обратная связь по ДЗ</li>
           <li><span class="check">✓</span> Разбор вашего кейса на встрече</li>
         </ul>
-        <a href="https://t.me/krasseg" target="_blank" class="btn-primary">Записаться</a>
+        <button class="btn-primary" onclick="openModal('Стандарт — 35 000 ₽')">Записаться</button>
       </div>
 
       <!-- Extended -->
@@ -2096,7 +2260,7 @@ body {
           <li><span class="check">✓</span> 3 индивидуальные сессии</li>
           <li><span class="check">✓</span> Внедрение в ваш бизнес или процессы</li>
         </ul>
-        <a href="https://t.me/krasseg" target="_blank" class="btn-outline">Обсудить</a>
+        <button class="btn-outline" onclick="openModal('Расширенный — 75 000 ₽')">Записаться</button>
       </div>
 
     </div>
@@ -2171,6 +2335,44 @@ body {
     <div class="final-start-info">Старт — 11 апреля 2025 · Группа до 20 человек</div>
   </div>
 </section>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="signupModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">&times;</button>
+    <div id="modalForm">
+      <div class="modal-tariff" id="modalTariff">Тариф</div>
+      <h3 class="modal-title">Записаться на курс</h3>
+      <p class="modal-subtitle">Оставьте заявку — свяжемся в Telegram</p>
+      <form id="signupForm">
+        <div class="form-group">
+          <label class="form-label">Ваше имя</label>
+          <input type="text" class="form-input" id="formName" placeholder="Как к вам обращаться?" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Telegram</label>
+          <input type="text" class="form-input" id="formTelegram" placeholder="@username" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Кем работаете?</label>
+          <input type="text" class="form-input" id="formJob" placeholder="Например: диетолог, психолог, коуч" required>
+        </div>
+        <button type="submit" class="btn-primary form-submit" id="formSubmitBtn">
+          Отправить заявку
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+        <div class="form-error" id="formError" style="display: none;"></div>
+      </form>
+    </div>
+    <div id="modalSuccess" style="display: none;">
+      <div class="form-success">
+        <div class="form-success-icon">✅</div>
+        <div class="form-success-title">Заявка отправлена!</div>
+        <p class="form-success-text">Скоро напишем вам в Telegram</p>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- FOOTER -->
 <footer class="footer">
@@ -2250,6 +2452,75 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       target.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   });
+});
+
+// Modal functionality
+let currentTariff = '';
+
+function openModal(tariff) {
+  currentTariff = tariff;
+  document.getElementById('modalTariff').textContent = tariff;
+  document.getElementById('modalForm').style.display = 'block';
+  document.getElementById('modalSuccess').style.display = 'none';
+  document.getElementById('formError').style.display = 'none';
+  document.getElementById('signupForm').reset();
+  document.getElementById('signupModal').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('signupModal').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+// Close on overlay click
+document.getElementById('signupModal').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
+
+// Close on Escape key
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeModal();
+});
+
+// Form submission
+document.getElementById('signupForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+
+  const submitBtn = document.getElementById('formSubmitBtn');
+  const errorEl = document.getElementById('formError');
+
+  submitBtn.disabled = true;
+  submitBtn.innerHTML = 'Отправляем...';
+  errorEl.style.display = 'none';
+
+  const data = {
+    name: document.getElementById('formName').value.trim(),
+    telegram: document.getElementById('formTelegram').value.trim(),
+    job: document.getElementById('formJob').value.trim(),
+    tariff: currentTariff
+  };
+
+  try {
+    const response = await fetch('https://ai-course-form.krasseg.workers.dev', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+
+    if (!response.ok) throw new Error('Ошибка отправки');
+
+    document.getElementById('modalForm').style.display = 'none';
+    document.getElementById('modalSuccess').style.display = 'block';
+
+    setTimeout(closeModal, 3000);
+  } catch (error) {
+    errorEl.textContent = 'Что-то пошло не так. Попробуйте ещё раз или напишите в Telegram @krasseg';
+    errorEl.style.display = 'block';
+  } finally {
+    submitBtn.disabled = false;
+    submitBtn.innerHTML = 'Отправить заявку <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';
+  }
 });
 </script>
 
