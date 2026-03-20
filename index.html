@@ -2515,7 +2515,7 @@ document.getElementById('signupForm').addEventListener('submit', async function(
 
     setTimeout(closeModal, 3000);
   } catch (error) {
-    errorEl.textContent = 'Что-то пошло не так. Попробуйте ещё раз или напишите в Telegram @krasseg';
+    errorEl.innerHTML = 'Что-то пошло не так. Попробуйте ещё раз или напишите в <a href="https://t.me/krasseg" target="_blank" style="color: var(--accent);">Telegram @krasseg</a>';
     errorEl.style.display = 'block';
   } finally {
     submitBtn.disabled = false;
