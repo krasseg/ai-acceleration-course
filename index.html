@@ -1591,8 +1591,7 @@ body {
     grid-template-columns: 1fr;
     gap: 40px;
   }
-  .hero-visual { order: -1; }
-  .float-badge { display: none; }
+    .float-badge { display: none; }
   .for-who-grid { grid-template-columns: repeat(2, 1fr); }
   .pricing-grid { grid-template-columns: 1fr; max-width: 420px; margin-left: auto; margin-right: auto; }
   .price-card.featured { transform: none; }
@@ -1603,7 +1602,20 @@ body {
 
 @media (max-width: 768px) {
   .section { padding: 48px 0; }
-  .nav-links { display: none; }
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--bg-card);
+    flex-direction: column;
+    padding: 20px 24px;
+    gap: 16px;
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  }
+  .nav-links.show { display: flex; }
   .nav-toggle { display: flex; }
   .hero { min-height: auto; padding: 120px 0 60px; }
   .hero-meta { gap: 24px; }
@@ -2195,49 +2207,6 @@ body {
   </div>
 </section>
 
-<!-- TOOLS -->
-<section class="section tools-section">
-  <div class="container">
-    <div class="section-label">Инструменты</div>
-    <div class="section-title">Только то, что работает</div>
-    <p class="section-subtitle">Мы не будем изучать все возможные инструменты - покажем только самое актуальное и эффективное для ваших задач.</p>
-    <div class="tools-strip">
-      <div class="tool-item animate-on-scroll">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg" alt="ChatGPT" class="tool-logo">
-        <span>ChatGPT</span>
-      </div>
-      <div class="tool-item animate-on-scroll">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/8/8a/Claude_AI_logo.svg" alt="Claude" class="tool-logo">
-        <span>Claude</span>
-      </div>
-      <div class="tool-item animate-on-scroll">
-        <div class="tool-logo tool-logo-emoji">🎨</div>
-        <span>Midjourney</span>
-      </div>
-      <div class="tool-item animate-on-scroll">
-        <div class="tool-logo tool-logo-emoji">📊</div>
-        <span>Gamma</span>
-      </div>
-      <div class="tool-item animate-on-scroll">
-        <div class="tool-logo tool-logo-emoji">🎙️</div>
-        <span>Otter.ai</span>
-      </div>
-      <div class="tool-item animate-on-scroll">
-        <div class="tool-logo tool-logo-emoji">🔬</div>
-        <span>Perplexity</span>
-      </div>
-      <div class="tool-item animate-on-scroll">
-        <div class="tool-logo tool-logo-emoji">📓</div>
-        <span>NotebookLM</span>
-      </div>
-      <div class="tool-item animate-on-scroll">
-        <div class="tool-logo tool-logo-emoji">🤖</div>
-        <span>Telegram-бот</span>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- PRICING -->
 <section class="section" id="pricing">
   <div class="container">
@@ -2338,6 +2307,49 @@ body {
           <h4>Записи всех встреч</h4>
           <p>Не успели на созвон - пришлём запись и краткое саммари</p>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TOOLS -->
+<section class="section tools-section">
+  <div class="container">
+    <div class="section-label">Инструменты</div>
+    <div class="section-title">Только то, что работает</div>
+    <p class="section-subtitle">Мы не будем изучать все возможные инструменты - покажем только самое актуальное и эффективное для ваших задач.</p>
+    <div class="tools-strip">
+      <div class="tool-item animate-on-scroll">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg" alt="ChatGPT" class="tool-logo">
+        <span>ChatGPT</span>
+      </div>
+      <div class="tool-item animate-on-scroll">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/8/8a/Claude_AI_logo.svg" alt="Claude" class="tool-logo">
+        <span>Claude</span>
+      </div>
+      <div class="tool-item animate-on-scroll">
+        <div class="tool-logo tool-logo-emoji">🎨</div>
+        <span>Midjourney</span>
+      </div>
+      <div class="tool-item animate-on-scroll">
+        <div class="tool-logo tool-logo-emoji">📊</div>
+        <span>Gamma</span>
+      </div>
+      <div class="tool-item animate-on-scroll">
+        <div class="tool-logo tool-logo-emoji">🎙️</div>
+        <span>Otter.ai</span>
+      </div>
+      <div class="tool-item animate-on-scroll">
+        <div class="tool-logo tool-logo-emoji">🔬</div>
+        <span>Perplexity</span>
+      </div>
+      <div class="tool-item animate-on-scroll">
+        <div class="tool-logo tool-logo-emoji">📓</div>
+        <span>NotebookLM</span>
+      </div>
+      <div class="tool-item animate-on-scroll">
+        <div class="tool-logo tool-logo-emoji">🤖</div>
+        <span>Telegram-бот</span>
       </div>
     </div>
   </div>
