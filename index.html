@@ -1334,6 +1334,28 @@ body {
   color: var(--text-light);
 }
 
+.price-old {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-light);
+  text-decoration: line-through;
+  margin-bottom: 4px;
+}
+
+.price-badge {
+  display: inline-block;
+  font-family: 'Unbounded', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #fff;
+  background: var(--green);
+  padding: 4px 10px;
+  border-radius: 50px;
+  margin-left: 10px;
+  vertical-align: middle;
+}
+
 .price-card-desc {
   font-size: 0.88rem;
   color: var(--text-mid);
@@ -2217,16 +2239,14 @@ body {
   <div class="container">
     <div class="section-label">Тарифы</div>
     <div class="section-title">Выберите свой формат участия</div>
-    <p class="section-subtitle">Старт 11 апреля 2025 · Группа до 20 человек</p>
-    <div style="background: linear-gradient(135deg, #FFF8EC, #FFF0FB); border: 2px solid var(--accent); border-radius: 16px; padding: 16px 24px; margin-top: 24px; margin-bottom: 8px; text-align: center;">
-      <span style="font-family: 'Unbounded', sans-serif; font-size: 0.9rem; font-weight: 700; color: var(--accent);">🔥 Скидка 10% при оплате до 31 марта</span>
-    </div>
+    <p class="section-subtitle">Старт 11 апреля 2025 · Группа до 20 человек · <strong style="color: var(--accent);">-10% до 31 марта</strong></p>
     <div class="pricing-grid">
 
       <!-- Lite -->
       <div class="price-card animate-on-scroll">
         <div class="price-card-name">Lite</div>
-        <div class="price-card-amount">20 000 <small>₽</small></div>
+        <div class="price-old">20 000 ₽</div>
+        <div class="price-card-amount">18 000 <small>₽</small><span class="price-badge">-10%</span></div>
         <p class="price-card-desc">Самостоятельное прохождение с записями и чатом</p>
         <ul class="price-features">
           <li><span class="check">✓</span> 5 групповых встреч (Zoom)</li>
@@ -2236,13 +2256,14 @@ body {
           <li class="disabled"><span class="check">-</span> Личная обратная связь по ДЗ</li>
           <li class="disabled"><span class="check">-</span> Разбор вашего кейса</li>
         </ul>
-        <button class="btn-outline" onclick="openModal('Lite - 20 000 ₽')">Записаться</button>
+        <button class="btn-outline" onclick="openModal('Lite - 18 000 ₽')">Записаться</button>
       </div>
 
       <!-- Standard -->
       <div class="price-card featured animate-on-scroll">
         <div class="price-card-name">Стандарт</div>
-        <div class="price-card-amount">35 000 <small>₽</small></div>
+        <div class="price-old">35 000 ₽</div>
+        <div class="price-card-amount">31 500 <small>₽</small><span class="price-badge">-10%</span></div>
         <p class="price-card-desc">С обратной связью и разбором ваших задач</p>
         <ul class="price-features">
           <li><span class="check">✓</span> 5 групповых встреч (Zoom)</li>
@@ -2252,20 +2273,21 @@ body {
           <li><span class="check">✓</span> Личная обратная связь по ДЗ</li>
           <li><span class="check">✓</span> Разбор вашего кейса на встрече</li>
         </ul>
-        <button class="btn-primary" onclick="openModal('Стандарт - 35 000 ₽')">Записаться</button>
+        <button class="btn-primary" onclick="openModal('Стандарт - 31 500 ₽')">Записаться</button>
       </div>
 
       <!-- Extended -->
       <div class="price-card animate-on-scroll">
         <div class="price-card-name">Расширенный</div>
-        <div class="price-card-amount">75 000 <small>₽</small></div>
+        <div class="price-old">75 000 ₽</div>
+        <div class="price-card-amount">67 500 <small>₽</small><span class="price-badge">-10%</span></div>
         <p class="price-card-desc">Полное сопровождение и внедрение в ваш бизнес</p>
         <ul class="price-features">
           <li><span class="check">✓</span> Всё из тарифа «Стандарт»</li>
           <li><span class="check">✓</span> 3 индивидуальные сессии</li>
           <li><span class="check">✓</span> Ускорим ваши процессы в бизнесе с помощью AI</li>
         </ul>
-        <button class="btn-outline" onclick="openModal('Расширенный - 75 000 ₽')">Записаться</button>
+        <button class="btn-outline" onclick="openModal('Расширенный - 67 500 ₽')">Записаться</button>
       </div>
 
     </div>
